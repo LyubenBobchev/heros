@@ -7,20 +7,9 @@ import { MessageService } from '../message.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-  messages: string[];
 
-  constructor(private messageService: MessageService) { }
+  constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.getMessages();
   }
-
-  getMessages() {
-    this.messages = this.messageService.messages;
-  }
-
-  clear(){
-    this.messages = [];
-  }
-
 }
