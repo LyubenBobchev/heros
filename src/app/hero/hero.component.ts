@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Hero } from '../hero';
-import { HeroService} from '../hero.service';
+import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
 
 
@@ -21,7 +21,15 @@ export class HeroComponent implements OnInit {
     this.getHeroes();
   }
 
-  getHeroes(): void{
+  getHeroes(): void {
     this.heroService.getHeroes().subscribe(h => this.heroes = h);
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.addHero({name} as Hero).subscribe(hero => {
+      this.heroes.push(hero);
+    })
   }
 }
